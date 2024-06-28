@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
  export const CountrySelector = ({ label, value, onChange, options }) => {
     return (
-      <div>
+      <div className='selector'>
         <label>{label}</label>
         <select value={value} onChange={(e) => onChange(e.target.value)}>
           <option value="">Seleccione un país</option>

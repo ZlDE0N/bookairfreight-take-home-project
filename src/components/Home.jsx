@@ -8,14 +8,12 @@ export const Home = () => {
     const [quote, setQuote] = useState(null);
     
     return (
-    <div>
-        <div style={{padding:'2rem'}}>
-            <span>componente 1:</span>
+    <div className="app-container">
+        <div>
             <SavedQuotesButtonHeader />
         </div>
 
-        <div style={{padding: '2rem'}}>
-            <span>componente 2:</span>
+        <div>
             <QuoteForm setQuote={setQuote} />
             {quote && <QuoteResult quote={quote} />}    
         </div>

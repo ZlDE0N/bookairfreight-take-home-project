@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export const ShippingChannelSelector = ({ value, onChange, options }) => {
     return (
-      <div>
+      <div className='selector'>
         <label>Canal de Envío</label>
         <select value={value} onChange={(e) => onChange(e.target.value)}>
           <option value="">Seleccione un canal</option>

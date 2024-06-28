@@ -1,0 +1,187 @@
+html {
+    font-size: 100%; /* 1 rem = 16px */
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0; /* Buenas prácticas para restablecer el margen predeterminado */
+    padding: 0; /* Buenas prácticas para restablecer el relleno predeterminado */
+    box-sizing: border-box; /* Buenas prácticas para manejar el box-sizing */
+}
+
+/* Asegúrate de que todos los elementos hereden estas reglas */
+*, *::before, *::after {
+    box-sizing: inherit;
+    font-family: inherit;
+}
+
+/* Components styles */
+.app-container {
+    margin-left: 2rem;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 1rem;
+}
+
+.save-quotes-btn {
+    Background-color: rgb(21 128 61);
+    color: white;
+    Font-size: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin: 2rem 0;
+}
+
+.add-carton-btn {
+    background-color:rgb(29 78 216);
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.submit-btn {
+    Background-color: rgb(21 128 61);
+    color: white;
+    Font-size: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 2rem;
+}
+
+.container-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 0 2rem 0.75rem ;
+}
+
+.selector {
+    font-size: 1rem;    
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.carton-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.carton-container h3 {
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin: 0;
+}
+
+.carton-input {
+    display: flex;
+    flex-direction: column;
+} 
+
+/* .carton-input label {
+
+} */
+
+.carton-input input{
+    width: fit-content;
+    font-size: 1rem;
+}
+
+/* QUOTE RESULTS STYLES */
+.quote-container {
+    width: 100%;
+    margin: 0 2rem;
+    font-family: sans-serif;
+  }
+  
+  .quote-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .quote-title {
+    width: 25%;
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid black;
+  }
+  
+  .quote-title-right {
+    width: 75%;
+    background-color: rgb(29, 78, 216);
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid rgb(29, 78, 216);;
+  }
+  
+  .quote-left, .quote-right {
+    padding: 1rem;
+    vertical-align: top;
+    border: 1px solid black;
+    text-align: center;
+  }
+  
+  .quote-delivery-days {
+    font-size: 1.125rem;
+    color: rgb(29, 78, 216);
+    margin-bottom: 0.5rem;
+  }
+  
+  .quote-estimated-delivery {
+    font-size: 1rem;
+  }
+  
+  .quote-estimated-date {
+    font-weight: 700;
+  }
+  
+  .quote-cost {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+  }
+  
+  .quote-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .quote-save, .quote-share {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    border: 1px solid black;
+  }
+  
+  .quote-save {
+    background-color: rgb(21, 128, 61);
+    color: white;
+  }
+  
+  .quote-share {
+    background-color: rgb(29, 78, 216);
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .quote-table td {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .quote-actions {
+      justify-content: center;
+    }
+  }
+  
