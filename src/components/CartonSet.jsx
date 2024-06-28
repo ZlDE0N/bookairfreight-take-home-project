@@ -10,6 +10,7 @@ export const CartonSet = ({ carton, onChange }) => {
       <label>Unidades:</label>
       <input
         type="number"
+        min="0"
         value={carton.units}
         onChange={(e) => handleInputChange('units', e.target.value)}
       />
@@ -17,6 +18,7 @@ export const CartonSet = ({ carton, onChange }) => {
       <label>Largo (cm):</label>
       <input
         type="number"
+        min="0"
         value={carton.length}
         onChange={(e) => handleInputChange('length', e.target.value)}
       />
@@ -24,6 +26,7 @@ export const CartonSet = ({ carton, onChange }) => {
       <label>Ancho (cm):</label>
       <input
         type="number"
+        min="0"
         value={carton.width}
         onChange={(e) => handleInputChange('width', e.target.value)}
       />
@@ -31,6 +34,7 @@ export const CartonSet = ({ carton, onChange }) => {
       <label>Alto (cm):</label>
       <input
         type="number"
+        min="0"
         value={carton.height}
         onChange={(e) => handleInputChange('height', e.target.value)}
       />
@@ -38,6 +42,7 @@ export const CartonSet = ({ carton, onChange }) => {
       <label>Peso (kg):</label>
       <input
         type="number"
+        min="0"
         value={carton.weight}
         onChange={(e) => handleInputChange('weight', e.target.value)}
       />

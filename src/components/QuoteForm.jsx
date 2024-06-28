@@ -5,7 +5,7 @@ import { CountrySelector } from "./CountrySelector";
 import { ShippingChannelSelector } from "./ShippingChannelSelector";
 import { CartonSet } from "./CartonSet";
 // Shipping cost algorithm
-import calculateQuote from "../logic/calculateQuote.JS";
+import calculateQuote from "../logic/calculateQuote.js";
 
 export const QuoteForm = ({ setQuote }) => {
 
@@ -34,7 +34,7 @@ export const QuoteForm = ({ setQuote }) => {
         <form onSubmit={handleSubmit}>
             <CountrySelector label="País de Origen" value={origin} onChange={setOrigin} options={['China', 'India', 'Vietnam']} />
             <CountrySelector label="País de Destino" value={destination} onChange={setDestination} options={['USA', 'Canada', 'Germany']} />
-            <ShippingChannelSelector value={channel} onChange={setChannel} options={['Aéreo', 'Marítimo']} />
+            <ShippingChannelSelector value={channel} onChange={setChannel} options={['Air', 'Ocean']} />
 
             {cartons.map((carton, index) => (
                 <CartonSet
