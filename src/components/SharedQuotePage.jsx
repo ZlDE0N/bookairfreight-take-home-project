@@ -26,7 +26,9 @@ const SharedQuotePage = () => {
   return (
     <div className="shared-quote-page">
       <div className="navigation">
-        <Link to="/">Back to Home</Link>
+      <Link to="/">
+          <button className="quote-home">Home</button> 
+        </Link>
       </div>
       <div className="quote-container">
         <QuoteResult quote={quote} showActions={false}/>

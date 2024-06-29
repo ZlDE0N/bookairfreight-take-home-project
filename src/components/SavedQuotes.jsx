@@ -43,17 +43,21 @@ const SavedQuotes = () => {
   return (
     <div className="saved-quotes-page">
       <div className="navigation">
-        <Link to="/">Back to Home</Link>
+        <Link to="/">
+          <button className="quote-home">Home</button> 
+        </Link>
       </div>
       <div className="saved-quotes-container">
         {savedQuotes.map((quote, index) => (
           <div key={index} className="saved-quote">
             <QuoteResult quote={quote} showActions={false} /> 
-            <button onClick={() => handleDeleteQuote(quote.id)}>Delete</button>
+            <button className='quote-delete-btn' onClick={() => handleDeleteQuote(quote.id)}>Delete</button>
           </div>
         ))}
+        {savedQuotes.length > 0 && (
+          <button style={{marginTop:'2rem'}} className='quote-delete-btn' onClick={handleClearAllQuotes}>Clear All Quotes</button>
+        )}
       </div>
-      <button onClick={handleClearAllQuotes}>Clear All Quotes</button>
     </div>
   );
 };

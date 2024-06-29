@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-// Shipping rate table per kg
+// Tabla de tarifas de envío por kg
 const rates = {
   China: {
     Canada: { air: 10, ocean: 5 },
@@ -19,19 +19,20 @@ const rates = {
   },
 };
 
-// Function to calculate the quote
+// Función para calcular la cotización
 export const calculateQuote = (origin, destination, channel, cartons) => {
   const lowerCaseChannel = channel.toLowerCase();
   if (!rates[origin] || !rates[origin][destination] || !rates[origin][destination][lowerCaseChannel]) {
-    throw new Error('Shipping rate not found for the values ​​provided.');
+    throw new Error('Shipping rate not found for the values provided.');
   }
 
   const perKgRate = rates[origin][destination][lowerCaseChannel];
 
-// Calculate gross weight and volumetric weight
+  // Calcular peso bruto y peso volumétrico
   let grossWeight = 0;
   let volumetricWeight = 0;
   let oversizeCharge = 0;
+  let hasOversize = false;
 
   cartons.forEach(carton => {
     const { units, length, width, height, weight } = carton;
@@ -41,26 +42,36 @@ export const calculateQuote = (origin, destination, channel, cartons) => {
     grossWeight += units * cartonGrossWeight;
     volumetricWeight += units * cartonVolumetricWeight;
 
-    // Calculate the oversize charge
+    // Calcular el cargo por sobredimensionamiento
     if (origin === 'China' && weight > 30) {
-      oversizeCharge += 55;
+      hasOversize = true;
     } else if (origin === 'India' && length > 120) {
-      oversizeCharge += 60;
+      hasOversize = true;
     } else if (origin === 'Vietnam' && weight > 20 && length > 100) {
-      oversizeCharge += 65;
+      hasOversize = true;
     }
   });
 
-// Determine the loadable weight
+  if (hasOversize) {
+    if (origin === 'China') {
+      oversizeCharge = 55;
+    } else if (origin === 'India') {
+      oversizeCharge = 60;
+    } else if (origin === 'Vietnam') {
+      oversizeCharge = 65;
+    }
+  }
+
+  // Determinar el peso cargable
   const chargeableWeight = Math.max(grossWeight, volumetricWeight);
 
-// Calculate shipping cost
+  // Calcular el costo de envío
   const shippingCost = chargeableWeight * perKgRate + oversizeCharge;
 
-// Calculate delivery days
+  // Calcular los días de entrega
   const deliveryDays = calculateDeliveryDays(channel);
 
-// Calculate the estimated delivery date
+  // Calcular la fecha estimada de entrega
   const estimatedDeliveryDate = calculateEstimatedDeliveryDate(deliveryDays);
 
   return {
@@ -73,29 +84,30 @@ export const calculateQuote = (origin, destination, channel, cartons) => {
   };
 };
 
-
-// Function to calculate delivery days
+// Función para calcular los días de entrega
 const calculateDeliveryDays = (channel) => {
   const startRange = channel.toLowerCase() === 'air' ? getRandomInt(3, 7) : getRandomInt(25, 30);
   const endRange = startRange + (channel.toLowerCase() === 'air' ? getRandomInt(2, 4) : getRandomInt(5, 10));
   return `${startRange}-${endRange}`;
 };
 
-// Function to calculate the estimated delivery date
+// Función para calcular la fecha estimada de entrega
 const calculateEstimatedDeliveryDate = (deliveryDays) => {
   const [start, end] = deliveryDays.split('-').map(Number);
   const currentDate = new Date();
-  const startDate = new Date(currentDate.setDate(currentDate.getDate() + start));
-  const endDate = new Date(currentDate.setDate(currentDate.getDate() + end));   
+  const startDate = new Date(currentDate.getTime());
+  startDate.setDate(currentDate.getDate() + start);
+  const endDate = new Date(currentDate.getTime());
+  endDate.setDate(currentDate.getDate() + end);
   return `${startDate.toDateString()} - ${endDate.toDateString()}`;
 };
 
-// Auxiliary function to obtain a random number between two values
+// Función auxiliar para obtener un número aleatorio entre dos valores
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-// Define prop-types for the calculateQuote function
+// Definir prop-types para la función calculateQuote
 calculateQuote.propTypes = {
   origin: PropTypes.string.isRequired,
   destination: PropTypes.string.isRequired,
