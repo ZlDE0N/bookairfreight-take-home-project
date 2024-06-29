@@ -4,17 +4,15 @@ Este proyecto proporciona una configuración mínima para trabajar con React en 
 Inicialización de la Aplicación
 Para iniciar la aplicación de React, sigue estos sencillos pasos:
 
-Instalación de Dependencias:
+# Instalación de Dependencias:
 
-bash
-Copiar código
-npm install
-Iniciar el Servidor de Desarrollo:
+1) npm install
 
-bash
-Copiar código
-npm run dev
-Vite: Ventajas y Beneficios
+
+2) npm run dev
+
+
+# Vite: Ventajas y Beneficios
 Esta aplicación está construida con Vite debido a sus múltiples ventajas, entre las cuales se incluyen:
 
 Rápida Velocidad de Compilación: Vite utiliza ESBuild para una compilación extremadamente rápida y eficiente.
@@ -25,8 +23,8 @@ Compatibilidad con Múltiples Plugins: Vite ofrece compatibilidad con una amplia
 Proyecto para Bookairfreight
 Esta aplicación ha sido desarrollada como parte de una prueba técnica para la empresa Bookairfreight. El proyecto se ha realizado con el máximo esfuerzo y atención al detalle, cumpliendo con cada indicación y requerimiento funcional especificado para asegurar su correcta implementación.
 
-Objetivo del Proyecto
+# Objetivo del Proyecto
 El objetivo principal de este proyecto es demostrar competencias técnicas en el desarrollo de aplicaciones con React y Vite, así como en la implementación de buenas prácticas de desarrollo y pruebas.
 
-Valoración del Proyecto
+# Valoración del Proyecto
 Esperamos que este esfuerzo sea valorado de la mejor manera posible, reconociendo la dedicación y el compromiso invertidos en cumplir con los más altos estándares de calidad y funcionalidad. Cada componente y función ha sido cuidadosamente implementado para garantizar que la aplicación no solo sea funcional, sino también eficiente y mantenible.
