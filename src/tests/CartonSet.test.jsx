@@ -1,5 +1,5 @@
 // __tests__/CartonSet.test.js
-import React from 'react';
+// import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import {CartonSet} from '../components/CartonSet';
 
