@@ -37,7 +37,7 @@ export const QuoteForm = ({ setQuote }) => {
       const quote = calculateQuote(origin, destination, channel, cartons);
       setQuote(quote); // Update the quote in the Home status
     } else {
-      alert('Por favor completa todos los campos antes de enviar el formulario.');
+      alert('Please complete all fields before submitting the form.');
     }
   };
 
@@ -46,7 +46,7 @@ export const QuoteForm = ({ setQuote }) => {
       <div className='container-selector'>
         <CountrySelector defaultOptionText="Select a starting country" label="Starting Country" value={origin} onChange={setOrigin} options={['China', 'India', 'Vietnam']} />
         <CountrySelector defaultOptionText="Select a destination country" label="Destination Country" value={destination} onChange={setDestination} options={['USA', 'Canada', 'Germany']} />
-        <ShippingChannelSelector value={channel} onChange={setChannel} options={['air', 'ocean']} /> {/* Asegúrate de que las opciones coincidan con lo esperado por calculateQuote */}
+        <ShippingChannelSelector value={channel} onChange={setChannel} options={['air', 'ocean']} /> 
       </div>
 
       {cartons.map((carton, index) => (

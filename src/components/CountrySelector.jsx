@@ -21,9 +21,9 @@ CountrySelector.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  defaultOptionText: PropTypes.string, // Nueva prop
+  defaultOptionText: PropTypes.string, 
 };
 
 CountrySelector.defaultProps = {
-  defaultOptionText: 'Select a starting country', // Valor por defecto
+  defaultOptionText: 'Select a starting country', // Default value
 };

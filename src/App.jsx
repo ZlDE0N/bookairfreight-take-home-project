@@ -1,7 +1,5 @@
-// App.js
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-// import { SavedQuotesButtonHeader } from './components/SavedQuotesButton';
 import { Home } from './components/Home';
 import SavedQuotes from './components/SavedQuotes';
 import SharedQuotePage from './components/SharedQuotePage';

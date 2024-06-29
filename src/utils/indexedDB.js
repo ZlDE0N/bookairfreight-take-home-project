@@ -1,5 +1,3 @@
-// IndexedDB.js
-
 const dbName = 'savedQuotesDB';
 const storeName = 'savedQuotes';
 
