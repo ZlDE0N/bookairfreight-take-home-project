@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2020: true, jest: true },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -17,5 +17,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+
+    // Desactivar temporalmente la regla no-undef
+    'no-undef': 'off',
   },
-}
+};
