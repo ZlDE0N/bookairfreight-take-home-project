@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-// Tabla de tarifas de envío por kg
+// Shipping rate table per kg
 const rates = {
   China: {
     Canada: { air: 10, ocean: 5 },
@@ -19,7 +19,7 @@ const rates = {
   },
 };
 
-// Función para calcular la cotización
+// Function to calculate the quote
 export const calculateQuote = (origin, destination, channel, cartons) => {
   const lowerCaseChannel = channel.toLowerCase();
   if (!rates[origin] || !rates[origin][destination] || !rates[origin][destination][lowerCaseChannel]) {
@@ -28,7 +28,7 @@ export const calculateQuote = (origin, destination, channel, cartons) => {
 
   const perKgRate = rates[origin][destination][lowerCaseChannel];
 
-  // Calcular peso bruto y peso volumétrico
+// Calculate gross weight and volumetric weight
   let grossWeight = 0;
   let volumetricWeight = 0;
   let oversizeCharge = 0;
@@ -42,7 +42,7 @@ export const calculateQuote = (origin, destination, channel, cartons) => {
     grossWeight += units * cartonGrossWeight;
     volumetricWeight += units * cartonVolumetricWeight;
 
-    // Calcular el cargo por sobredimensionamiento
+// Calculate the oversize charge
     if (origin === 'China' && weight > 30) {
       hasOversize = true;
     } else if (origin === 'India' && length > 120) {
@@ -62,16 +62,16 @@ export const calculateQuote = (origin, destination, channel, cartons) => {
     }
   }
 
-  // Determinar el peso cargable
+// Determine the loadable weight
   const chargeableWeight = Math.max(grossWeight, volumetricWeight);
 
-  // Calcular el costo de envío
+// Calculate shipping cost
   const shippingCost = chargeableWeight * perKgRate + oversizeCharge;
 
-  // Calcular los días de entrega
+// Calculate delivery days
   const deliveryDays = calculateDeliveryDays(channel);
 
-  // Calcular la fecha estimada de entrega
+// Calculate the estimated delivery date
   const estimatedDeliveryDate = calculateEstimatedDeliveryDate(deliveryDays);
 
   return {
@@ -84,14 +84,14 @@ export const calculateQuote = (origin, destination, channel, cartons) => {
   };
 };
 
-// Función para calcular los días de entrega
+// Function to calculate delivery days
 const calculateDeliveryDays = (channel) => {
   const startRange = channel.toLowerCase() === 'air' ? getRandomInt(3, 7) : getRandomInt(25, 30);
   const endRange = startRange + (channel.toLowerCase() === 'air' ? getRandomInt(2, 4) : getRandomInt(5, 10));
   return `${startRange}-${endRange}`;
 };
 
-// Función para calcular la fecha estimada de entrega
+// Function to calculate the estimated delivery date
 const calculateEstimatedDeliveryDate = (deliveryDays) => {
   const [start, end] = deliveryDays.split('-').map(Number);
   const currentDate = new Date();
@@ -102,12 +102,12 @@ const calculateEstimatedDeliveryDate = (deliveryDays) => {
   return `${startDate.toDateString()} - ${endDate.toDateString()}`;
 };
 
-// Función auxiliar para obtener un número aleatorio entre dos valores
+// Auxiliary function to obtain a random number between two values
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-// Definir prop-types para la función calculateQuote
+// Define prop-types for the calculateQuote function
 calculateQuote.propTypes = {
   origin: PropTypes.string.isRequired,
   destination: PropTypes.string.isRequired,
