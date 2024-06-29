@@ -1,4 +1,4 @@
-#React + Vite
+# React + Vite
 Este proyecto proporciona una configuración mínima para trabajar con React en Vite, incluyendo HMR (Hot Module Replacement) y algunas reglas de ESLint.
 
 Inicialización de la Aplicación
