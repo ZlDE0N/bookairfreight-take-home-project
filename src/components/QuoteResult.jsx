@@ -1,43 +1,7 @@
-// import PropTypes from 'prop-types';
-
-// export const QuoteResult = ({ quote }) => {
-//   const handleSave = () => {
-//     // Lógica para guardar la cotización en almacenamiento local
-//   };
-
-//   const handleShare = () => {
-//     // Lógica para copiar la URL de la cotización compartida
-//   };
-
-//   return (
-//     <div>
-//       <div>{quote.shippingChannel}</div>
-//       <div>{quote.deliveryDays}</div>
-//       <div>{quote.estimatedDeliveryDate}</div>
-//       <div>{quote.origin} a {quote.destination}</div>
-//       <div>{quote.cost.toFixed(2)}</div>
-//       <button onClick={handleSave}>Guardar</button>
-//       <button onClick={handleShare}>Compartir</button>
-//     </div>
-//   );
-// };
-
-// QuoteResult.propTypes = {
-//   quote: PropTypes.shape({
-//     shippingChannel: PropTypes.string.isRequired,
-//     deliveryDays: PropTypes.string.isRequired,
-//     estimatedDeliveryDate: PropTypes.string.isRequired,
-//     origin: PropTypes.string.isRequired,
-//     destination: PropTypes.string.isRequired,
-//     cost: PropTypes.number.isRequired, // Asegúrate de que sea número
-//   }).isRequired,
-// };
 import PropTypes from 'prop-types';
-// import './QuoteResult.css'; // Asegúrate de crear este archivo CSS para los estilos
 import { saveQuote } from '../utils/indexedDB';
 
-export const QuoteResult = ({ quote }) => {
-
+export const QuoteResult = ({ quote, showActions }) => {
   const handleSave = () => {
     saveQuote(quote)
       .then(() => {
@@ -49,11 +13,20 @@ export const QuoteResult = ({ quote }) => {
       });
   };
 
-
-  
   const handleShare = () => {
-    // Lógica para copiar la URL de la cotización compartida
+    const baseUrl = window.location.origin;
+    const url = `${baseUrl}/shared-quote?shippingChannel=${quote.shippingChannel}&origin=${quote.origin}&destination=${quote.destination}&deliveryDays=${quote.deliveryDays}&estimatedDeliveryDate=${encodeURIComponent(quote.estimatedDeliveryDate)}&cost=${quote.cost}`;
+    
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        alert('The quote link has been copied to your clipboard!');
+      })
+      .catch(err => {
+        console.error('Failed to copy the quote link:', err);
+        alert('Failed to copy the quote link. Please try again.');
+      });
   };
+  
 
   return (
     <div className="quote-container">
@@ -75,10 +48,12 @@ export const QuoteResult = ({ quote }) => {
             </td>
             <td className="quote-right">
               <div className="quote-cost">US$ {quote.cost.toFixed(2)}</div>
-              <div className="quote-actions">
-                <button className="quote-save" onClick={handleSave}>Save</button>
-                <button className="quote-share" onClick={handleShare}>Share</button>
-              </div>
+              {showActions && (
+                <div className="quote-actions">
+                  <button className="quote-save" onClick={handleSave}>Save</button>
+                  <button className="quote-share" onClick={handleShare}>Share</button>
+                </div>
+              )}
             </td>
           </tr>
         </tbody>
@@ -94,9 +69,13 @@ QuoteResult.propTypes = {
     estimatedDeliveryDate: PropTypes.string.isRequired,
     origin: PropTypes.string.isRequired,
     destination: PropTypes.string.isRequired,
-    cost: PropTypes.number.isRequired, // Asegúrate de que sea número
+    cost: PropTypes.number.isRequired,
   }).isRequired,
+  showActions: PropTypes.bool, // Property to display or not the action buttons
+};
+
+QuoteResult.defaultProps = {
+  showActions: true, // By default, show action buttons
 };
 
 export default QuoteResult;
-

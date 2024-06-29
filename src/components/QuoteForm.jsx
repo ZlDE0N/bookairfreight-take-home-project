@@ -1,140 +1,3 @@
-// import { useState } from "react";
-// import PropTypes from 'prop-types';
-// // components
-// import { CountrySelector } from "./CountrySelector";
-// import { ShippingChannelSelector } from "./ShippingChannelSelector";
-// import { CartonSet } from "./CartonSet";
-// // Shipping cost algorithm
-// import calculateQuote from "../logic/calculateQuote.js";
-
-// export const QuoteForm = ({ setQuote }) => {
-
-//     const [origin, setOrigin] = useState('');
-//     const [destination, setDestination] = useState('');
-//     const [channel, setChannel] = useState('');
-//     const [cartons, setCartons] = useState([{ units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
-
-//     const handleAddCarton = () => {
-//         setCartons([...cartons, { units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
-//     };
-
-//     const handleRemoveCarton = () => {
-//         if (cartons.length > 1) {
-//             setCartons(cartons.slice(0, -1));
-//         }
-//     };
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         const quote = calculateQuote(origin, destination, channel, cartons);
-//         setQuote(quote);
-//     };
-
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <CountrySelector label="País de Origen" value={origin} onChange={setOrigin} options={['China', 'India', 'Vietnam']} />
-//             <CountrySelector label="País de Destino" value={destination} onChange={setDestination} options={['USA', 'Canada', 'Germany']} />
-//             <ShippingChannelSelector value={channel} onChange={setChannel} options={['Air', 'Ocean']} />
-
-//             {cartons.map((carton, index) => (
-//                 <CartonSet
-//                     key={index}
-//                     carton={carton}
-//                     onChange={(updatedCarton) => setCartons(cartons.map((c, i) => (i === index ? updatedCarton : c)))}
-//                 />
-//             ))}
-
-//             {cartons.length > 1 && (
-//                 <button type="button" onClick={handleRemoveCarton}>Eliminar Cartón</button>
-//             )}
-//             <button type="button" onClick={handleAddCarton}>Agregar Cartón</button>
-//             <button type="submit">Enviar</button>
-//         </form>
-//     );
-// };
-
-// QuoteForm.propTypes = {
-//     setQuote: PropTypes.func.isRequired,
-// };
-
-
-
-
-// import { useState } from 'react';
-// import PropTypes from 'prop-types';
-// import { CountrySelector } from './CountrySelector';
-// import { ShippingChannelSelector } from './ShippingChannelSelector';
-// import { CartonSet } from './CartonSet';
-// import calculateQuote from '../logic/calculateQuote.js';
-
-// export const QuoteForm = ({ setQuote }) => {
-//   const [origin, setOrigin] = useState('');
-//   const [destination, setDestination] = useState('');
-//   const [channel, setChannel] = useState('');
-//   const [cartons, setCartons] = useState([{ units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
-
-//   const handleAddCarton = () => {
-//     setCartons([...cartons, { units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
-//   };
-
-//   const handleRemoveCarton = () => {
-//     if (cartons.length > 1) {
-//       setCartons(cartons.slice(0, -1));
-//     }
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     // Validar que todos los campos no estén vacíos
-//     const anyEmpty = cartons.some(carton => (
-//       carton.units === 0 || carton.length === 0 || carton.width === 0 || carton.height === 0 || carton.weight === 0
-//     ));
-
-//     if (origin && destination && channel && !anyEmpty) {
-//       const quote = calculateQuote(origin, destination, channel, cartons);
-//       setQuote(quote);
-//     } else {
-//       alert('Por favor completa todos los campos antes de enviar el formulario.');
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <div className='container-selector'>
-//         <CountrySelector label="País de Origen" value={origin} onChange={setOrigin} options={['China', 'India', 'Vietnam']} />
-//         <CountrySelector label="País de Destino" value={destination} onChange={setDestination} options={['USA', 'Canada', 'Germany']} />
-//         <ShippingChannelSelector value={channel} onChange={setChannel} options={['Air', 'Ocean']} />
-//       </div>
-
-//       {cartons.map((carton, index) => (
-//         <CartonSet
-//           key={index}
-//           index={index}
-//           carton={carton}
-//           onChange={(updatedCarton) => setCartons(cartons.map((c, i) => (i === index ? updatedCarton : c)))}
-//         />
-//       ))}
-
-//       {cartons.length > 1 && (
-//         <button type="button" onClick={handleRemoveCarton}>Eliminar Cartón</button>
-//       )}
-
-//       <div className='btn-container'>
-//         <button className='add-carton-btn' type="button" onClick={handleAddCarton}>Agregar Cartón</button>
-
-//         <button className='submit-btn' type="submit">Enviar</button>
-//       </div>
-      
-//     </form>
-//   );
-// };
-
-// QuoteForm.propTypes = {
-//   setQuote: PropTypes.func.isRequired,
-// };
-
-
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { CountrySelector } from './CountrySelector';
@@ -147,29 +10,32 @@ export const QuoteForm = ({ setQuote }) => {
   const [destination, setDestination] = useState('');
   const [channel, setChannel] = useState('');
   const [cartons, setCartons] = useState([{ units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
+  const maxCartons = 5; // Maximum number of cardboard sets allowed
 
   const handleAddCarton = () => {
-    setCartons([...cartons, { units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
+    if (cartons.length < maxCartons) {
+      setCartons([...cartons, { units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
+    }
   };
 
-  const handleRemoveCarton = () => {
+  const handleRemoveCarton = (indexToRemove) => {
     if (cartons.length > 1) {
-      setCartons(cartons.slice(0, -1));
+      setCartons(cartons.filter((_, index) => index !== indexToRemove));
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validar que todos los campos no estén vacíos
+    // Validate that all fields are not empty
     const anyEmpty = cartons.some(carton => (
       carton.units === 0 || carton.length === 0 || carton.width === 0 || carton.height === 0 || carton.weight === 0
     ));
 
     if (origin && destination && channel && !anyEmpty) {
-      // Calcular la cotización
+      // Calculate the quote
       const quote = calculateQuote(origin, destination, channel, cartons);
-      setQuote(quote); // Actualizar la cotización en el estado de Home
+      setQuote(quote); // Update the quote in the Home status
     } else {
       alert('Por favor completa todos los campos antes de enviar el formulario.');
     }
@@ -178,27 +44,30 @@ export const QuoteForm = ({ setQuote }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className='container-selector'>
-        <CountrySelector label="País de Origen" value={origin} onChange={setOrigin} options={['China', 'India', 'Vietnam']} />
-        <CountrySelector label="País de Destino" value={destination} onChange={setDestination} options={['USA', 'Canada', 'Germany']} />
+        <CountrySelector defaultOptionText="Select a starting country" label="Starting Country" value={origin} onChange={setOrigin} options={['China', 'India', 'Vietnam']} />
+        <CountrySelector defaultOptionText="Select a destination country" label="Destination Country" value={destination} onChange={setDestination} options={['USA', 'Canada', 'Germany']} />
         <ShippingChannelSelector value={channel} onChange={setChannel} options={['air', 'ocean']} /> {/* Asegúrate de que las opciones coincidan con lo esperado por calculateQuote */}
       </div>
 
       {cartons.map((carton, index) => (
-        <CartonSet
-          key={index}
-          index={index}
-          carton={carton}
-          onChange={(updatedCarton) => setCartons(cartons.map((c, i) => (i === index ? updatedCarton : c)))}
-        />
+        <div key={index}>
+          <CartonSet
+            index={index}
+            carton={carton}
+            onChange={(updatedCarton) => setCartons(cartons.map((c, i) => (i === index ? updatedCarton : c)))}
+          />
+          {cartons.length > 1 && (
+            <button className='delete-carton-btn' type="button" onClick={() => handleRemoveCarton(index)}>Remove carton</button>
+          )}
+        </div>
       ))}
 
-      {cartons.length > 1 && (
-        <button type="button" onClick={handleRemoveCarton}>Eliminar Cartón</button>
+      {cartons.length < maxCartons && (
+        <button className='add-carton-btn' type="button" onClick={handleAddCarton}>Add carton</button>
       )}
 
       <div className='btn-container'>
-        <button className='add-carton-btn' type="button" onClick={handleAddCarton}>Agregar Cartón</button>
-        <button className='submit-btn' type="submit">Enviar</button>
+        <button className='submit-btn' type="submit">Submit button</button>
       </div>
     </form>
   );

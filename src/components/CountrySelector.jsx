@@ -1,30 +1,29 @@
 import PropTypes from 'prop-types';
 
- export const CountrySelector = ({ label, value, onChange, options }) => {
-    return (
-      <div className='selector'>
-        <label>{label}</label>
-        <select value={value} onChange={(e) => onChange(e.target.value)}>
-          <option value="">Seleccione un país</option>
-          {options.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
-    );
-  };
+export const CountrySelector = ({ label, value, onChange, options, defaultOptionText }) => {
+  return (
+    <div className='selector'>
+      <label>{label}</label>
+      <select value={value} onChange={(e) => onChange(e.target.value)}>
+        <option value="">{defaultOptionText}</option>
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
 
+CountrySelector.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  defaultOptionText: PropTypes.string, // Nueva prop
+};
 
-
-  CountrySelector.propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  };
-  
-
-
-
+CountrySelector.defaultProps = {
+  defaultOptionText: 'Select a starting country', // Valor por defecto
+};

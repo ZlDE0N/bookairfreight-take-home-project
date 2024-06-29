@@ -1,67 +1,3 @@
-// import PropTypes from 'prop-types';
-
-// export const CartonSet = ({ carton, onChange }) => {
-//   const handleInputChange = (field, value) => {
-//     onChange({ ...carton, [field]: parseFloat(value) || 0 });
-//   };
-
-//   return (
-//     <div>
-//       <label>Unidades:</label>
-//       <input
-//         type="number"
-//         min="0"
-//         value={carton.units}
-//         onChange={(e) => handleInputChange('units', e.target.value)}
-//       />
-
-//       <label>Largo (cm):</label>
-//       <input
-//         type="number"
-//         min="0"
-//         value={carton.length}
-//         onChange={(e) => handleInputChange('length', e.target.value)}
-//       />
-
-//       <label>Ancho (cm):</label>
-//       <input
-//         type="number"
-//         min="0"
-//         value={carton.width}
-//         onChange={(e) => handleInputChange('width', e.target.value)}
-//       />
-
-//       <label>Alto (cm):</label>
-//       <input
-//         type="number"
-//         min="0"
-//         value={carton.height}
-//         onChange={(e) => handleInputChange('height', e.target.value)}
-//       />
-
-//       <label>Peso (kg):</label>
-//       <input
-//         type="number"
-//         min="0"
-//         value={carton.weight}
-//         onChange={(e) => handleInputChange('weight', e.target.value)}
-//       />
-//     </div>
-//   );
-// };
-
-// CartonSet.propTypes = {
-//   carton: PropTypes.shape({
-//     units: PropTypes.number.isRequired,
-//     length: PropTypes.number.isRequired,
-//     width: PropTypes.number.isRequired,
-//     height: PropTypes.number.isRequired,
-//     weight: PropTypes.number.isRequired,
-//   }).isRequired,
-//   onChange: PropTypes.func.isRequired,
-// };
-
-
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -84,7 +20,7 @@ export const CartonSet = ({ index, carton, onChange }) => {
       <h3>Carton {index + 1}</h3>
       
       <div className='carton-input'>
-          <label>Unidades:</label>
+          <label>Units:</label>
           <input
             type="text"
             pattern="[0-9]*"
@@ -94,7 +30,7 @@ export const CartonSet = ({ index, carton, onChange }) => {
       </div>          
       
       <div className='carton-input'>
-          <label>Largo (cm):</label>
+          <label>Length (cm):</label>
           <input
             type="text"
             pattern="[0-9]*"
@@ -104,7 +40,7 @@ export const CartonSet = ({ index, carton, onChange }) => {
       </div>    
       
       <div className='carton-input'> 
-          <label>Ancho (cm):</label>
+          <label>Width (cm):</label>
           <input
             type="text"
             pattern="[0-9]*"
@@ -114,7 +50,7 @@ export const CartonSet = ({ index, carton, onChange }) => {
       </div>
       
       <div className='carton-input'>
-          <label>Alto (cm):</label>
+          <label>Height (cm):</label>
           <input
             type="text"
             pattern="[0-9]*"
@@ -124,7 +60,7 @@ export const CartonSet = ({ index, carton, onChange }) => {
       </div>
       
       <div className='carton-input'>
-          <label>Peso (kg):</label>
+          <label>Weight (kg):</label>
           <input
             type="text"
             pattern="[0-9]*"
