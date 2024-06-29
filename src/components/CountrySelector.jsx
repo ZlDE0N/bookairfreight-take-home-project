@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const CountrySelector = ({ label, value, onChange, options, defaultOptionText }) => {
+export const CountrySelector = ({ label, value, onChange, options, defaultOptionText = 'Select a starting country' }) => {
   return (
     <div className='selector'>
       <label>{label}</label>
@@ -22,8 +22,4 @@ CountrySelector.propTypes = {
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   defaultOptionText: PropTypes.string, 
-};
-
-CountrySelector.defaultProps = {
-  defaultOptionText: 'Select a starting country', // Default value
 };
