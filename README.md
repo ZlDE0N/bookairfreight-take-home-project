@@ -1,30 +1,30 @@
 # React + Vite
-Este proyecto proporciona una configuración mínima para trabajar con React en Vite, incluyendo HMR (Hot Module Replacement) y algunas reglas de ESLint.
+This project provides a minimal setup to work with React in Vite, including Hot Module Replacement (HMR) and some ESLint rules.
 
-Inicialización de la Aplicación
-Para iniciar la aplicación de React, sigue estos sencillos pasos:
+Initializing the Application
+To start the React application, follow these simple steps:
 
-# Instalación de Dependencias:
+# Install Dependencies:
+Run the following command to install all dependencies:
+
 
 1) npm install
 
-
 2) npm run dev
 
+# Vite: Advantages and Benefits
+This application is built with Vite due to its numerous advantages, which include:
 
-# Vite: Ventajas y Beneficios
-Esta aplicación está construida con Vite debido a sus múltiples ventajas, entre las cuales se incluyen:
+Rapid Build Speed: Vite utilizes ESBuild for extremely fast and efficient compilation.
+Instant HMR: Thanks to its architecture, Vite provides incredibly fast Hot Module Replacement (HMR), allowing immediate updates during development.
+Production Optimization: Vite optimizes files for production using Rollup, ensuring optimal performance in browsers.
+Simplified Configuration: With minimal and straightforward configuration, Vite allows developers to focus more on application development.
+Compatibility with Multiple Plugins: Vite offers compatibility with a wide range of plugins that facilitate extending its functionalities.
+Project for Bookairfreight
+This application has been developed as part of a technical test for Bookairfreight. The project has been carried out with the utmost effort and attention to detail, fulfilling every specification and functional requirement to ensure its correct implementation.
 
-Rápida Velocidad de Compilación: Vite utiliza ESBuild para una compilación extremadamente rápida y eficiente.
-HMR Instantáneo: Gracias a su arquitectura, Vite proporciona un Hot Module Replacement (HMR) increíblemente rápido, permitiendo actualizaciones inmediatas durante el desarrollo.
-Optimización de Producción: Vite optimiza los archivos para la producción usando Rollup, asegurando un rendimiento óptimo en los navegadores.
-Configuración Simplificada: Con una configuración mínima y sencilla, Vite permite a los desarrolladores centrarse más en el desarrollo de la aplicación en sí.
-Compatibilidad con Múltiples Plugins: Vite ofrece compatibilidad con una amplia gama de plugins que facilitan la extensión de sus funcionalidades.
-Proyecto para Bookairfreight
-Esta aplicación ha sido desarrollada como parte de una prueba técnica para la empresa Bookairfreight. El proyecto se ha realizado con el máximo esfuerzo y atención al detalle, cumpliendo con cada indicación y requerimiento funcional especificado para asegurar su correcta implementación.
+# Project Objective
+The main objective of this project is to demonstrate technical competencies in developing applications with React and Vite, as well as implementing best practices in development and testing.
 
-# Objetivo del Proyecto
-El objetivo principal de este proyecto es demostrar competencias técnicas en el desarrollo de aplicaciones con React y Vite, así como en la implementación de buenas prácticas de desarrollo y pruebas.
-
-# Valoración del Proyecto
-Esperamos que este esfuerzo sea valorado de la mejor manera posible, reconociendo la dedicación y el compromiso invertidos en cumplir con los más altos estándares de calidad y funcionalidad. Cada componente y función ha sido cuidadosamente implementado para garantizar que la aplicación no solo sea funcional, sino también eficiente y mantenible.
+# Project Evaluation
+We hope this effort is evaluated in the best possible way, recognizing the dedication and commitment invested in meeting the highest standards of quality and functionality. Each component and function has been carefully implemented to ensure the application is not only functional but also efficient and maintainable.
