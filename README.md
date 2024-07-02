@@ -34,6 +34,8 @@ Simplified Configuration: With minimal and straightforward configuration, Vite a
 
 Compatibility with Multiple Plugins: Vite offers compatibility with a wide range of plugins that facilitate extending its functionalities.
 
+# Using Vitest for Testing
+I chose to use Vitest for testing in my project because it integrates seamlessly with Vite, which is my project build tool of choice. Vitest provides straightforward setup and smooth integration with Vite, allowing me to run tests efficiently and swiftly. Moreover, it aligns well with modern web application development practices, offering effective tools to ensure code quality in my React project.
 
 # Project for Bookairfreight
 This application has been developed as part of a technical test for Bookairfreight. The project has been carried out with the utmost effort and attention to detail, fulfilling every specification and functional requirement to ensure its correct implementation.
