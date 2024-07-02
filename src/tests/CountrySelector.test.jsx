@@ -36,5 +36,4 @@ describe('CountrySelector component', () => {
     expect(screen.getByDisplayValue('Choose a destination')).toBeInTheDocument();
   });
 
-  // Puedes agregar más pruebas según sea necesario
 });
