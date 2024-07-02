@@ -12,6 +12,11 @@ Run the following command to install all dependencies:
 
 2) npm run dev
 
+- Run tests:
+
+
+3) npm test 
+
 # Vite: Advantages and Benefits
 This application is built with Vite due to its numerous advantages, which include:
 
