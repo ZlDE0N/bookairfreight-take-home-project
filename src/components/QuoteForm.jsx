@@ -9,18 +9,18 @@ export const QuoteForm = ({ setQuote }) => {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [channel, setChannel] = useState('');
-  const [cartons, setCartons] = useState([{ units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
+  const [cartons, setCartons] = useState([{ id: Date.now(), units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
   const maxCartons = 5;
 
   const handleAddCarton = () => {
     if (cartons.length < maxCartons) {
-      setCartons([...cartons, { units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
+      setCartons([...cartons, { id: Date.now(), units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
     }
   };
 
-  const handleRemoveCarton = (indexToRemove) => {
+  const handleRemoveCarton = (id) => {
     if (cartons.length > 1) {
-      setCartons(cartons.filter((_, index) => index !== indexToRemove));
+      setCartons(cartons.filter(carton => carton.id !== id));
     }
   };
 
@@ -48,14 +48,14 @@ export const QuoteForm = ({ setQuote }) => {
       </div>
 
       {cartons.map((carton, index) => (
-        <div key={index}>
+        <div key={carton.id}>
           <CartonSet
             index={index}
             carton={carton}
-            onChange={(updatedCarton) => setCartons(cartons.map((c, i) => (i === index ? updatedCarton : c)))}
+            onChange={(updatedCarton) => setCartons(cartons.map((c) => (c.id === carton.id ? updatedCarton : c)))}
           />
           {cartons.length > 1 && (
-            <button className='delete-carton-btn' type="button" onClick={() => handleRemoveCarton(index)}>Remove carton</button>
+            <button className='delete-carton-btn' type="button" onClick={() => handleRemoveCarton(carton.id)}>Remove carton</button>
           )}
         </div>
       ))}
