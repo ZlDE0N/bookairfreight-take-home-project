@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { saveQuote } from '../utils/indexedDB';
 
-export const QuoteResult = ({ quote, showActions }) => {
+export const QuoteResult = ({ quote, showActions = true }) => {
   const handleSave = () => {
     saveQuote(quote)
       .then(() => {
@@ -73,9 +73,3 @@ QuoteResult.propTypes = {
   }).isRequired,
   showActions: PropTypes.bool, // Property to display or not the action buttons
 };
-
-QuoteResult.defaultProps = {
-  showActions: true, // By default, show action buttons
-};
-
-export default QuoteResult;

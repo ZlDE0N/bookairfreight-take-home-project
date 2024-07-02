@@ -9,33 +9,31 @@ export const QuoteForm = ({ setQuote }) => {
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [channel, setChannel] = useState('');
-  const [cartons, setCartons] = useState([{ units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
-  const maxCartons = 5; // Maximum number of cardboard sets allowed
+  const [cartons, setCartons] = useState([{ id: Date.now(), units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
+  const maxCartons = 5;
 
   const handleAddCarton = () => {
     if (cartons.length < maxCartons) {
-      setCartons([...cartons, { units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
+      setCartons([...cartons, { id: Date.now(), units: 0, length: 0, width: 0, height: 0, weight: 0 }]);
     }
   };
 
-  const handleRemoveCarton = (indexToRemove) => {
+  const handleRemoveCarton = (id) => {
     if (cartons.length > 1) {
-      setCartons(cartons.filter((_, index) => index !== indexToRemove));
+      setCartons(cartons.filter(carton => carton.id !== id));
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate that all fields are not empty
     const anyEmpty = cartons.some(carton => (
       carton.units === 0 || carton.length === 0 || carton.width === 0 || carton.height === 0 || carton.weight === 0
     ));
 
     if (origin && destination && channel && !anyEmpty) {
-      // Calculate the quote
       const quote = calculateQuote(origin, destination, channel, cartons);
-      setQuote(quote); // Update the quote in the Home status
+      setQuote(quote);
     } else {
       alert('Please complete all fields before submitting the form.');
     }
@@ -44,20 +42,20 @@ export const QuoteForm = ({ setQuote }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className='container-selector'>
-        <CountrySelector defaultOptionText="Select a starting country" label="Starting Country" value={origin} onChange={setOrigin} options={['China', 'India', 'Vietnam']} />
-        <CountrySelector defaultOptionText="Select a destination country" label="Destination Country" value={destination} onChange={setDestination} options={['USA', 'Canada', 'Germany']} />
-        <ShippingChannelSelector value={channel} onChange={setChannel} options={['air', 'ocean']} /> 
+        <CountrySelector id="origin-country" label="Starting Country" value={origin} onChange={setOrigin} options={['China', 'India', 'Vietnam']} />
+        <CountrySelector id="destination-country" defaultOptionText="Select a destination country" label="Destination Country" value={destination} onChange={setDestination} options={['USA', 'Canada', 'Germany']} />
+        <ShippingChannelSelector id="shipping-channel" label="Shipping Channel" value={channel} onChange={setChannel} options={['air', 'ocean']} /> 
       </div>
 
       {cartons.map((carton, index) => (
-        <div key={index}>
+        <div key={carton.id}>
           <CartonSet
             index={index}
             carton={carton}
-            onChange={(updatedCarton) => setCartons(cartons.map((c, i) => (i === index ? updatedCarton : c)))}
+            onChange={(updatedCarton) => setCartons(cartons.map((c) => (c.id === carton.id ? updatedCarton : c)))}
           />
           {cartons.length > 1 && (
-            <button className='delete-carton-btn' type="button" onClick={() => handleRemoveCarton(index)}>Remove carton</button>
+            <button className='delete-carton-btn' type="button" onClick={() => handleRemoveCarton(carton.id)}>Remove carton</button>
           )}
         </div>
       ))}
